@@ -76,10 +76,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Eat Your Heart Out II — Sandwich Shop in Poway, CA" },
       { name: "description", content: "Beloved mom-and-pop deli in Poway serving generous, hand-stacked pastrami sandwiches, clubs, wraps, and salads. 4.9★ on Google." },
-      { property: "og:title", content: "Eat Your Heart Out II — Poway's Favorite Deli" },
-      { property: "og:description", content: "Hand-stacked sandwiches, friendly owners, free cookies. Poway, CA." },
+      { property: "og:title", content: "Eat Your Heart Out II — Sandwich Shop in Poway, CA" },
+      { property: "og:description", content: "Beloved mom-and-pop deli in Poway serving generous, hand-stacked pastrami sandwiches, clubs, wraps, and salads. 4.9★ on Google." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Eat Your Heart Out II — Sandwich Shop in Poway, CA" },
+      { name: "twitter:description", content: "Beloved mom-and-pop deli in Poway serving generous, hand-stacked pastrami sandwiches, clubs, wraps, and salads. 4.9★ on Google." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2026a198-c9c9-4736-ae83-149c9bc3fc3c/id-preview-5326d37a--cb50746e-feae-4344-837f-c428e61fa785.lovable.app-1778618399416.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2026a198-c9c9-4736-ae83-149c9bc3fc3c/id-preview-5326d37a--cb50746e-feae-4344-837f-c428e61fa785.lovable.app-1778618399416.png" },
     ],
     links: [
       {
