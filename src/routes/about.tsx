@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import interiorImg from "@/assets/deli-interior.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -29,17 +28,6 @@ function AboutPage() {
           a sweet couple inside the Scenic View Business Park, it's a true
           mom-and-pop deli — the kind that remembers your order.
         </p>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-20">
-        <img
-          src={interiorImg}
-          alt="Inside the deli — chalkboard menus, jars of pickles, warm light"
-          width={1400}
-          height={1000}
-          loading="lazy"
-          className="aspect-[16/9] w-full rounded-3xl object-cover shadow-xl"
-        />
       </section>
 
       <section className="mx-auto grid max-w-5xl gap-8 px-6 pb-24 md:grid-cols-3">
