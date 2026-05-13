@@ -9,7 +9,11 @@ export const Route = createFileRoute("/visit")({
         content:
           "Find Eat Your Heart Out II at 12600 Stowe Dr #2, Poway, CA 92064. Open Monday through Friday for lunch. Call (858) 486-7976.",
       },
+      { property: "og:title", content: "Visit & Hours — Eat Your Heart Out II, Poway" },
+      { property: "og:description", content: "12600 Stowe Dr #2, Poway, CA 92064. Open Mon–Fri 10:00 AM–2:30 PM. Call (858) 486-7976." },
+      { property: "og:url", content: "https://eatyourheartout2.lovable.app/visit" },
     ],
+    links: [{ rel: "canonical", href: "https://eatyourheartout2.lovable.app/visit" }],
   }),
   component: VisitPage,
 });

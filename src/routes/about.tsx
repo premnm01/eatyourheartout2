@@ -10,7 +10,11 @@ export const Route = createFileRoute("/about")({
         content:
           "A husband-and-wife sandwich shop tucked into a Poway business park, known for warm welcomes, generous portions, and that free cookie.",
       },
+      { property: "og:title", content: "About — Eat Your Heart Out II, Poway" },
+      { property: "og:description", content: "A husband-and-wife sandwich shop tucked into a Poway business park, known for warm welcomes, generous portions, and that free cookie." },
+      { property: "og:url", content: "https://eatyourheartout2.lovable.app/about" },
     ],
+    links: [{ rel: "canonical", href: "https://eatyourheartout2.lovable.app/about" }],
   }),
   component: AboutPage,
 });

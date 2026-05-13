@@ -11,7 +11,9 @@ export const Route = createFileRoute("/")({
         content:
           "Hand-stacked pastrami, clubs, wraps and salads from a beloved Poway mom-and-pop deli. 4.9★ across 207 Google reviews.",
       },
+      { property: "og:url", content: "https://eatyourheartout2.lovable.app/" },
     ],
+    links: [{ rel: "canonical", href: "https://eatyourheartout2.lovable.app/" }],
   }),
   component: HomePage,
 });
