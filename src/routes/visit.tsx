@@ -14,6 +14,21 @@ export const Route = createFileRoute("/visit")({
       { property: "og:url", content: "https://eatyourheartout2.lovable.app/visit" },
     ],
     links: [{ rel: "canonical", href: "https://eatyourheartout2.lovable.app/visit" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            { "@type": "Question", name: "Can I call ahead for pickup?", acceptedAnswer: { "@type": "Answer", text: "Yes — calling ahead is the fastest way to grab lunch. The kitchen gets busy between 11:30 and 1:00." } },
+            { "@type": "Question", name: "Where do I park?", acceptedAnswer: { "@type": "Answer", text: "Free parking is available in the Scenic View Business Park lot, right outside suite #2." } },
+            { "@type": "Question", name: "Do you take credit cards?", acceptedAnswer: { "@type": "Answer", text: "Yes, all major credit cards and cash." } },
+            { "@type": "Question", name: "Are you open weekends?", acceptedAnswer: { "@type": "Answer", text: "Open Monday through Friday, 10:00 AM to 2:30 PM. Closed Saturday and Sunday." } },
+          ],
+        }),
+      },
+    ],
   }),
   component: VisitPage,
 });
