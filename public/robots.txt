@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://eatyourheartout2.lovable.app/sitemap.xml
