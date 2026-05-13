@@ -10,7 +10,11 @@ export const Route = createFileRoute("/menu")({
         content:
           "Sandwiches, clubs, wraps, salads and sides at Eat Your Heart Out II in Poway, CA. Hot pastrami, the famous #3 and #4 clubs, macaroni salad and more.",
       },
+      { property: "og:title", content: "Menu — Eat Your Heart Out II Deli, Poway" },
+      { property: "og:description", content: "Hot pastrami, the famous #3 and #4 clubs, wraps, salads, and sides — built by hand in Poway." },
+      { property: "og:url", content: "https://eatyourheartout2.lovable.app/menu" },
     ],
+    links: [{ rel: "canonical", href: "https://eatyourheartout2.lovable.app/menu" }],
   }),
   component: MenuPage,
 });
