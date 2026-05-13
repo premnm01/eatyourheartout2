@@ -20,6 +20,7 @@ export const Route = createFileRoute("/visit")({
 
 function VisitPage() {
   return (
+    <>
     <section className="mx-auto max-w-6xl px-6 py-20">
       <div className="grid gap-10 md:grid-cols-2">
         <div>
@@ -89,5 +90,42 @@ function VisitPage() {
         </div>
       </div>
     </section>
+
+    <section className="mx-auto max-w-4xl px-6 pb-24">
+      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-paprika">Good to Know</span>
+      <h2 className="mt-2 font-display text-4xl font-bold text-ink">Common questions</h2>
+      <div className="mt-10 divide-y divide-border">
+        {faqs.map((f) => (
+          <div key={f.q} className="py-6">
+            <h3 className="font-display text-lg font-semibold text-ink">{f.q}</h3>
+            <p className="mt-2 text-muted-foreground">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+    </>
   );
 }
+
+const faqs = [
+  {
+    q: "Can I call ahead for pickup?",
+    a: "Yes — calling ahead is the fastest way to grab lunch. The kitchen gets busy between 11:30 and 1:00, so an early call helps your order be ready when you arrive.",
+  },
+  {
+    q: "Where do I park?",
+    a: "There's free parking right outside the shop in the Scenic View Business Park lot. Look for the suite #2 door.",
+  },
+  {
+    q: "Do you take credit cards?",
+    a: "Yes — all major cards plus cash. There's no surcharge for card payments.",
+  },
+  {
+    q: "Is delivery available?",
+    a: "We're listed on the major delivery apps for the Poway area. For larger office orders, give us a call to coordinate directly.",
+  },
+  {
+    q: "Are you open weekends?",
+    a: "We're a weekday lunch spot — open Monday through Friday, 10:00 AM to 2:30 PM. Closed Saturday and Sunday.",
+  },
+];
