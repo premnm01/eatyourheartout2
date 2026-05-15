@@ -47,7 +47,7 @@ function AboutPage() {
         </motion.div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-20">
+      <section className="mx-auto max-w-6xl px-6 pb-10">
         <motion.img
           variants={scaleIn}
           initial="hidden"
@@ -60,6 +60,35 @@ function AboutPage() {
           loading="lazy"
           className="aspect-[16/9] w-full rounded-3xl object-cover shadow-xl"
         />
+      </section>
+
+      <section className="mx-auto max-w-4xl px-6 pb-12">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          className="grid gap-8 md:grid-cols-2"
+        >
+          <motion.div variants={fadeUp}>
+            <h2 className="font-display text-2xl font-bold text-ink">How it started</h2>
+            <p className="mt-3 text-muted-foreground">
+              The shop has been a Poway lunch staple for years — a husband-and-wife team
+              who built their reputation one sandwich at a time. There's no corporate
+              playbook here, just two people who genuinely love what they do and show
+              it in every order.
+            </p>
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <h2 className="font-display text-2xl font-bold text-ink">The free cookie</h2>
+            <p className="mt-3 text-muted-foreground">
+              First-timers sometimes leave with a homemade cookie they didn't order and
+              didn't pay for. It's not on the menu and there's no rule about it — it's
+              just the kind of place this is. Come in once and you'll understand the
+              reviews.
+            </p>
+          </motion.div>
+        </motion.div>
       </section>
 
       <section className="mx-auto grid max-w-5xl gap-8 px-6 pb-24 md:grid-cols-3">
