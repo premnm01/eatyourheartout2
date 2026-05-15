@@ -21,14 +21,23 @@ export const Route = createFileRoute("/menu")({
   component: MenuPage,
 });
 
-const sections = [
+type Tag = "fan-favorite" | "vegetarian" | "new";
+type MenuItem = { name: string; desc: string; price: string; tags?: Tag[] };
+
+const BADGE: Record<Tag, { label: string; className: string }> = {
+  "fan-favorite": { label: "Fan Favorite", className: "bg-amber-100 text-amber-700" },
+  vegetarian:     { label: "Vegetarian",   className: "bg-green-100 text-green-700" },
+  new:            { label: "New",           className: "bg-sky-100 text-sky-700" },
+};
+
+const sections: { title: string; items: MenuItem[] }[] = [
   {
     title: "Signature Sandwiches",
     items: [
-      { name: "#1 — Hot Pastrami on Rye", desc: "Steamed pastrami stacked tall, yellow mustard, rye bread. The classic New-York-style move.", price: "$13" },
+      { name: "#1 — Hot Pastrami on Rye", desc: "Steamed pastrami stacked tall, yellow mustard, rye bread. The classic New-York-style move.", price: "$13", tags: ["fan-favorite"] },
       { name: "#2 — Pastrami & Corned Beef Club", desc: "Double-deck with everything — meats, cheese, lettuce, tomato, onion, pickles.", price: "$15" },
-      { name: "#3 — The One Everyone Tells You To Get", desc: "The most-recommended sandwich on the menu. Ask the owners — they'll build it.", price: "$14" },
-      { name: "#4 — Turkey Bacon Club", desc: "Roasted turkey, crisp bacon, cheese, lettuce, tomato. A regular favorite.", price: "$14" },
+      { name: "#3 — The One Everyone Tells You To Get", desc: "The most-recommended sandwich on the menu. Ask the owners — they'll build it.", price: "$14", tags: ["fan-favorite"] },
+      { name: "#4 — Turkey Bacon Club", desc: "Roasted turkey, crisp bacon, cheese, lettuce, tomato. A regular favorite.", price: "$14", tags: ["fan-favorite"] },
       { name: "The Bunker Family", desc: "Meatball sub with melted provolone. Two-handed, three-napkin.", price: "$13" },
       { name: "The Reuben", desc: "Corned beef, sauerkraut, swiss, Russian dressing on grilled rye.", price: "$14" },
       { name: "Build-Your-Own", desc: "Pick your bread, meat, cheese and fixings — they'll make it exactly how you want it.", price: "$12+" },
@@ -37,11 +46,11 @@ const sections = [
   {
     title: "Wraps, Salads & Vegetarian",
     items: [
-      { name: "The Vegetarian", desc: "Avocado, sprouts, cheese, lettuce, tomato, onion, cucumber — fully customizable.", price: "$11" },
+      { name: "The Vegetarian", desc: "Avocado, sprouts, cheese, lettuce, tomato, onion, cucumber — fully customizable.", price: "$11", tags: ["vegetarian"] },
       { name: "Turkey Wrap", desc: "Roasted turkey, greens, tomato, herb spread in a soft wrap.", price: "$12" },
-      { name: "Garden Wrap", desc: "Hummus, cucumber, tomato, onion, feta, mixed greens.", price: "$11" },
+      { name: "Garden Wrap", desc: "Hummus, cucumber, tomato, onion, feta, mixed greens.", price: "$11", tags: ["vegetarian"] },
       { name: "Chef Salad", desc: "Mixed greens, turkey, ham, cheese, egg, tomato, cucumber.", price: "$11" },
-      { name: "Garden Salad", desc: "Fresh greens with the works. Light, clean, big.", price: "$9" },
+      { name: "Garden Salad", desc: "Fresh greens with the works. Light, clean, big.", price: "$9", tags: ["vegetarian"] },
     ],
   },
   {
@@ -51,7 +60,7 @@ const sections = [
       { name: "Potato Salad", desc: "Classic, creamy, side-of-sandwich perfect.", price: "$4" },
       { name: "Kettle Chips", desc: "Crunchy and salty.", price: "$2" },
       { name: "House Pickle", desc: "Big, garlicky, snappy.", price: "$2" },
-      { name: "Homemade Cookie", desc: "Baked in-house. \"Cookies are for rookies\" — but you'll probably get one for free.", price: "$2" },
+      { name: "Homemade Cookie", desc: "Baked in-house. \"Cookies are for rookies\" — but you'll probably get one for free.", price: "$2", tags: ["new"] },
     ],
   },
 ];
@@ -115,6 +124,18 @@ function MenuPage() {
                   <div className="flex-1">
                     <h3 className="font-display text-lg font-semibold text-ink">{item.name}</h3>
                     <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    {item.tags && item.tags.length > 0 && (
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {item.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${BADGE[tag].className}`}
+                          >
+                            {BADGE[tag].label}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <span className="font-semibold text-paprika">{item.price}</span>
                 </motion.li>

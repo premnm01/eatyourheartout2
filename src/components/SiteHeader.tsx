@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { stagger, fadeUp } from "@/lib/motion";
+import { useIsOpen } from "@/lib/hours";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -10,6 +11,8 @@ const nav = [
 ] as const;
 
 export function SiteHeader() {
+  const isOpen = useIsOpen();
+
   return (
     <motion.header
       initial={{ y: -64, opacity: 0 }}
@@ -18,14 +21,33 @@ export function SiteHeader() {
       className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/" className="flex flex-col leading-none">
-          <span className="font-display text-xl font-black tracking-tight text-ink">
-            Eat Your Heart Out
-          </span>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-paprika">
-            II · Poway Deli
-          </span>
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link to="/" className="flex flex-col leading-none">
+            <span className="font-display text-xl font-black tracking-tight text-ink">
+              Eat Your Heart Out
+            </span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-paprika">
+              II · Poway Deli
+            </span>
+          </Link>
+          <AnimatePresence>
+            {isOpen !== null && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className={`hidden items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider sm:flex ${
+                  isOpen
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-600"
+                }`}
+              >
+                <span className={`h-1.5 w-1.5 rounded-full ${isOpen ? "bg-green-500" : "bg-red-500"} animate-pulse`} />
+                {isOpen ? "Open" : "Closed"}
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </div>
 
         <motion.nav
           variants={stagger}
