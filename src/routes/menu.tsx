@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import plateImg from "@/assets/pastrami-plate.jpg";
+import { fadeUp, scaleIn, slideRight, stagger, staggerFast, viewport } from "@/lib/motion";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -59,17 +61,26 @@ function MenuPage() {
     <>
       <section className="bg-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-20 md:grid-cols-[1.2fr_1fr]">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-paprika">The Menu</span>
-            <h1 className="mt-3 font-display text-5xl font-black text-ink md:text-6xl">
+          <motion.div variants={stagger} initial="hidden" animate="visible">
+            <motion.span variants={fadeUp} className="text-xs font-semibold uppercase tracking-[0.2em] text-paprika">
+              The Menu
+            </motion.span>
+            <motion.h1
+              variants={fadeUp}
+              className="mt-3 font-display text-5xl font-black text-ink md:text-6xl"
+            >
               Built by hand,<br />priced like a friend.
-            </h1>
-            <p className="mt-5 max-w-lg text-muted-foreground">
+            </motion.h1>
+            <motion.p variants={fadeUp} className="mt-5 max-w-lg text-muted-foreground">
               Prices are estimates — the chalkboard inside is the source of truth.
               Most lunches land between $10 and $20 per person.
-            </p>
-          </div>
-          <img
+            </motion.p>
+          </motion.div>
+
+          <motion.img
+            variants={slideRight}
+            initial="hidden"
+            animate="visible"
             src={plateImg}
             alt="Pastrami sandwich with macaroni salad and a pickle"
             width={1200}
@@ -82,22 +93,58 @@ function MenuPage() {
 
       <section className="mx-auto max-w-4xl space-y-16 px-6 py-20">
         {sections.map((section) => (
-          <div key={section.title}>
-            <h2 className="font-display text-3xl font-bold text-ink">{section.title}</h2>
-            <div className="mt-2 h-px w-16 bg-paprika" />
-            <ul className="mt-8 divide-y divide-border">
+          <motion.div
+            key={section.title}
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+          >
+            <motion.div variants={fadeUp}>
+              <h2 className="font-display text-3xl font-bold text-ink">{section.title}</h2>
+              <div className="mt-2 h-px w-16 bg-paprika" />
+            </motion.div>
+
+            <motion.ul variants={staggerFast} className="mt-8 divide-y divide-border">
               {section.items.map((item) => (
-                <li key={item.name} className="flex items-baseline gap-4 py-5">
+                <motion.li
+                  key={item.name}
+                  variants={fadeUp}
+                  className="flex items-baseline gap-4 py-5"
+                >
                   <div className="flex-1">
                     <h3 className="font-display text-lg font-semibold text-ink">{item.name}</h3>
                     <p className="text-sm text-muted-foreground">{item.desc}</p>
                   </div>
                   <span className="font-semibold text-paprika">{item.price}</span>
-                </li>
+                </motion.li>
               ))}
-            </ul>
-          </div>
+            </motion.ul>
+          </motion.div>
         ))}
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-20">
+        <motion.div
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          className="grid items-center gap-8 rounded-3xl bg-paprika p-10 text-primary-foreground md:grid-cols-[1fr_auto] md:p-14"
+        >
+          <div>
+            <h2 className="font-display text-3xl font-bold">Ready to order?</h2>
+            <p className="mt-3 max-w-md text-primary-foreground/80">
+              Call ahead and we'll have it ready when you arrive.
+            </p>
+          </div>
+          <a
+            href="tel:+18584867976"
+            className="rounded-full bg-mustard px-6 py-3 text-sm font-semibold uppercase tracking-wider text-ink"
+          >
+            Call (858) 486-7976
+          </a>
+        </motion.div>
       </section>
     </>
   );

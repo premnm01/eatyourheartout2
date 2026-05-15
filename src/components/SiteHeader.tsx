@@ -1,4 +1,6 @@
 import { Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { stagger, fadeUp } from "@/lib/motion";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -9,7 +11,12 @@ const nav = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
+    <motion.header
+      initial={{ y: -64, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur"
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex flex-col leading-none">
           <span className="font-display text-xl font-black tracking-tight text-ink">
@@ -19,26 +26,38 @@ export function SiteHeader() {
             II · Poway Deli
           </span>
         </Link>
-        <nav className="hidden items-center gap-8 md:flex">
+
+        <motion.nav
+          variants={stagger}
+          initial="hidden"
+          animate="visible"
+          className="hidden items-center gap-8 md:flex"
+        >
           {nav.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-paprika"
-              activeProps={{ className: "text-paprika" }}
-              activeOptions={{ exact: n.to === "/" }}
-            >
-              {n.label}
-            </Link>
+            <motion.div key={n.to} variants={fadeUp}>
+              <Link
+                to={n.to}
+                className="text-sm font-medium text-foreground/80 transition-colors hover:text-paprika"
+                activeProps={{ className: "text-paprika" }}
+                activeOptions={{ exact: n.to === "/" }}
+              >
+                {n.label}
+              </Link>
+            </motion.div>
           ))}
-        </nav>
-        <a
+        </motion.nav>
+
+        <motion.a
           href="tel:+18584867976"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.4, ease: "easeOut" }}
           className="hidden rounded-full bg-paprika px-4 py-2 text-xs font-semibold uppercase tracking-wider text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-block"
         >
           Call to Order
-        </a>
+        </motion.a>
       </div>
+
       <nav className="flex items-center justify-center gap-6 border-t border-border/60 py-2 md:hidden">
         {nav.map((n) => (
           <Link
@@ -52,6 +71,6 @@ export function SiteHeader() {
           </Link>
         ))}
       </nav>
-    </header>
+    </motion.header>
   );
 }
