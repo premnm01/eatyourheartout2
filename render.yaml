@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: eatyourheartout2
+    env: static
+    buildCommand: bun install && bun run build:render
+    staticPublishPath: ./dist-render
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
